@@ -1,0 +1,13 @@
+.about-me {
+  max-width: 800px;
+  width: 100%;
+  margin: 8rem 0 2rem -9rem;
+  padding: 2rem;
+  background: rgba(229, 240, 198, 0.822);
+  border-left: 5px solid black;
+  font-family: 'Courier New', monospace;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #404d31;
+  text-align: left;
+}
