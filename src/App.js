@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import WelcomeSection from './components/WelcomeSection';
 import './App.css';
 
 function App() {
