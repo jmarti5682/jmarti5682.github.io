@@ -1,11 +1,13 @@
 .typewriter {
   font-family: 'Courier New', monospace;
   font-size: 6rem;
-  position: absolute; 
+  position: absolute;
   top: 2rem;
   left: 2rem;
+  right: 400px; /* Keep space for the carousel */
   display: inline-block;
   color: black;
+  max-width: calc(100vw - 450px); /* Prevent overlap with carousel */
 }
 
 .cursor {
@@ -22,5 +24,38 @@
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .typewriter {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  /* When carousel switches to static, remove right constraint */
+  .typewriter {
+    right: 2rem;
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .typewriter {
+    font-size: 3rem;
+    top: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .typewriter {
+    font-size: 2rem;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
   }
 }

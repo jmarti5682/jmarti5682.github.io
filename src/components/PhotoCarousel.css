@@ -414,6 +414,7 @@
 }
 
 @media (max-width: 992px) {
+  /* Switch to static positioning on smaller screens */
   .photoCarousel {
     position: static;
     margin: 4rem auto 2rem auto;

@@ -25,3 +25,32 @@
 .icon:hover{
     cursor: pointer;
 }
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .contact {
+    margin: 4rem 0 2rem 1rem;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .icon {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact {
+    margin: 2rem 0 2rem 0.5rem;
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .contact-icons {
+    gap: 1rem;
+  }
+}

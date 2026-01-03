@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Buffer } from "buffer";
 import matter from "gray-matter";
-import { postFileUrls } from "../posts";
+import { postFileContents } from "../posts";
 import "./BlogGrid.css";
 
 // Polyfill Buffer for gray-matter in browser
@@ -16,18 +16,14 @@ export default function BlogGrid() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        async function loadPosts() {
-            const loadedPosts = await Promise.all(
-                postFileUrls.map(async (url) => {
-                    const response = await fetch(url);
-                    const rawContent = await response.text();
-                    const { data, content: markdownContent } = matter(rawContent);
-                    const excerpt =
-                        data.summary ||
-                        markdownContent.replace(/\n/g, " ").slice(0, 140).trim() + "...";
-                    return { ...data, excerpt };
-                })
-            );
+        function loadPosts() {
+            const loadedPosts = postFileContents.map((rawContent) => {
+                const { data, content: markdownContent } = matter(rawContent);
+                const excerpt =
+                    data.summary ||
+                    markdownContent.replace(/\n/g, " ").slice(0, 140).trim() + "...";
+                return { ...data, excerpt };
+            });
 
             // newest first
             loadedPosts.sort((p1, p2) => (p2.week ?? 0) - (p1.week ?? 0));

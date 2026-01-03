@@ -143,13 +143,52 @@
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+  .blogSection {
+    margin: 4rem 0 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .blogHeader h2 {
+    font-size: 1.75rem;
+  }
+
+  .blogHeader p {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .blogSection {
-    margin-left: 1rem;
-    padding: 1.5rem;
+    margin: 2rem 0 2rem 0.5rem;
+    padding: 1.25rem;
+  }
+
+  .blogHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .blogHeader p {
+    font-size: 0.95rem;
   }
 
   .postGrid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .postMeta {
+    font-size: 0.8rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .postTitle {
+    font-size: 1.2rem;
+  }
+
+  .postExcerpt {
+    font-size: 0.9rem;
   }
 }

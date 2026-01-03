@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Buffer } from "buffer";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import { postFileUrls } from "../posts";
+import { postFileContents } from "../posts";
 import "./PostPage.css";
 
 // Polyfill Buffer for gray-matter in browser
@@ -15,11 +15,9 @@ export default function PostPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadPost() {
+    function loadPost() {
       setLoading(true);
-      for (const url of postFileUrls) {
-        const response = await fetch(url);
-        const rawContent = await response.text();
+      for (const rawContent of postFileContents) {
         const { data, content: markdownContent } = matter(rawContent);
         if (data.slug === slug) {
           setPost({ data, content: markdownContent });

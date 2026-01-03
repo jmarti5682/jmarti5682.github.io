@@ -32,3 +32,30 @@ ul{
     font-size: 1.1rem;
     line-height: 1.6;
 }
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .project {
+    margin: 4rem 0 2rem 1rem;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  ul {
+    font-size: 1rem;
+    margin-left: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .project {
+    margin: 2rem 0 2rem 0.5rem;
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    font-size: 0.95rem;
+    margin-left: 1rem;
+  }
+}
