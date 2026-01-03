@@ -1,0 +1,494 @@
+.photoCarousel {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filmStrip {
+  background: #2d3a23;
+  padding: 0.75rem;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  border: 2px solid #1a2214;
+}
+
+/* Sprocket holes */
+.sprockets {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.25rem 0.5rem;
+  background: #2d3a23;
+}
+
+.sprocketsTop {
+  margin-bottom: 0.5rem;
+}
+
+.sprocketsBottom {
+  margin-top: 0.5rem;
+}
+
+.sprocket {
+  width: 8px;
+  height: 8px;
+  background: #1a2214;
+  border-radius: 2px;
+  border: 1px solid #404d31;
+}
+
+/* Photo frame */
+.photoFrame {
+  position: relative;
+  width: 320px;
+  height: 213px;
+  background: #1a2214;
+  border: 3px solid #404d31;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.photoFrame:hover {
+  transform: scale(1.02);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Navigation buttons */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(64, 77, 49, 0.8);
+  color: #fef9e7;
+  border: 2px solid #404d31;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+}
+
+.photoFrame:hover .navButton {
+  opacity: 1;
+}
+
+.navButton:hover {
+  background: rgba(64, 77, 49, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navPrev {
+  left: 0.5rem;
+}
+
+.navNext {
+  right: 0.5rem;
+}
+
+/* Frame counter (like film cameras) */
+.frameCounter {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(64, 77, 49, 0.9);
+  color: #fef9e7;
+  padding: 0.25rem 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 1px solid #404d31;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+/* Dots indicator */
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: rgba(229, 240, 198, 0.2);
+  border-radius: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(64, 77, 49, 0.3);
+  border: 1px solid #404d31;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot:hover {
+  background: rgba(64, 77, 49, 0.6);
+  transform: scale(1.2);
+}
+
+.dotActive {
+  background: #404d31;
+  transform: scale(1.3);
+}
+
+/* Label */
+.photoCarousel::before {
+  content: "35mm FILM";
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(229, 240, 198, 0.9);
+  color: #404d31;
+  padding: 0.25rem 0.75rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 2px solid #404d31;
+  letter-spacing: 2px;
+  border-radius: 2px;
+}
+
+/* Expand hint */
+.expandHint {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(64, 77, 49, 0.9);
+  color: #fef9e7;
+  padding: 0.35rem 0.75rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid #404d31;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.photoFrame:hover .expandHint {
+  opacity: 1;
+}
+
+/* Description */
+.carouselDescription {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(229, 240, 198, 0.7);
+  border: 2px solid #404d31;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #404d31;
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Modal/Lightbox */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-in;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.modalClose {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  background: rgba(64, 77, 49, 0.9);
+  color: #fef9e7;
+  border: 2px solid #404d31;
+  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.modalClose:hover {
+  background: #404d31;
+  transform: scale(1.1);
+}
+
+.modalFilmStrip {
+  background: #2d3a23;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  position: relative;
+  border: 3px solid #1a2214;
+}
+
+.modalPhotoFrame {
+  position: relative;
+  width: 1000px;
+  height: 667px;
+  background: #1a2214;
+  border: 4px solid #404d31;
+  overflow: hidden;
+}
+
+.modalPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #1a2214;
+}
+
+/* Modal navigation buttons */
+.modalNavButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(64, 77, 49, 0.9);
+  color: #fef9e7;
+  border: 3px solid #404d31;
+  font-size: 3rem;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.modalNavButton:hover {
+  background: #404d31;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.modalNavPrev {
+  left: -80px;
+}
+
+.modalNavNext {
+  right: -80px;
+}
+
+/* Photo description in modal */
+.photoDescription {
+  max-width: 1000px;
+  background: rgba(229, 240, 198, 0.95);
+  border: 3px solid #404d31;
+  border-radius: 4px;
+  padding: 1.5rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: #404d31;
+  line-height: 1.6;
+  text-align: center;
+  font-style: italic;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.photoDescription p {
+  margin: 0;
+}
+
+/* Bottom navigation arrows */
+.modalBottomNav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.modalBottomButton {
+  background: rgba(64, 77, 49, 0.9);
+  color: #fef9e7;
+  border: 3px solid #404d31;
+  font-size: 1.5rem;
+  width: 80px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.modalBottomButton:hover {
+  background: #404d31;
+  transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .modalPhotoFrame {
+    width: 800px;
+    height: 533px;
+  }
+
+  .photoDescription {
+    max-width: 800px;
+  }
+
+  .modalNavButton {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .modalNavPrev {
+    left: -60px;
+  }
+
+  .modalNavNext {
+    right: -60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .photoCarousel {
+    position: static;
+    margin: 4rem auto 2rem auto;
+    max-width: 400px;
+  }
+
+  .modalPhotoFrame {
+    width: 600px;
+    height: 400px;
+  }
+
+  .modalNavPrev {
+    left: 0.5rem;
+  }
+
+  .modalNavNext {
+    right: 0.5rem;
+  }
+
+  .photoDescription {
+    max-width: 600px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .modalBottomButton {
+    width: 70px;
+    height: 45px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .photoFrame {
+    width: 280px;
+    height: 187px;
+  }
+
+  .carouselDescription {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .modalPhotoFrame {
+    width: 400px;
+    height: 267px;
+  }
+
+  .modalClose {
+    top: -2.5rem;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .photoDescription {
+    max-width: 400px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .photoFrame {
+    width: 260px;
+    height: 173px;
+  }
+
+  .modalPhotoFrame {
+    width: 320px;
+    height: 213px;
+  }
+
+  .photoDescription {
+    max-width: 320px;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+}

@@ -1,19 +1,15 @@
-import WelcomeSection from './components/WelcomeSection';
-import AboutMe from './components/AboutMe';
-import Project from './components/Project';
-import Contact from './components/Contact'
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import PostPage from "./pages/PostPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <WelcomeSection />
-      <AboutMe />
-      <Project />
-      <Contact />
-      
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/week/:slug" element={<PostPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
